@@ -10,8 +10,8 @@ def main():
     reddit = auth(args.id, args.secret)
     subreddit = reddit.subreddit(args.subreddit)
     for submission in subreddit.new(limit=10):
-        if re.match('.*\.jpg$', submission.url) is None:
-            print("Image was not a jpg: " + submission.url)
+        if re.match('.*\.(jpg|png|gif)$', submission.url) is None:
+            print("Image was not in a valid format: " + submission.url)
         else:
             download_image(submission.url)
             lookup_image()
